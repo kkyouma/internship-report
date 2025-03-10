@@ -11,9 +11,7 @@
 %           modificar el archivo pucthesis.cls              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%
-%   Packages	 %
-%%%%%%%%%
+%%%%%%%%% Packages %%%%%%%%%
 
 % Floats
 \usepackage{graphicx}
@@ -57,12 +55,12 @@
 \newtheorem{example}{\bf Example}[chapter]
 \newtheorem{remark}{Remark}[chapter]
 
-<<<<<<< HEAD
+% <<<<<<< HEAD
 \makeatletter
   \setlength{\beftitle}{105\p@\@plus24\p@}
   \setlength{\afttitle}{65\p@}
 \makeatother
-=======
+% =======
 % En caso de que el título sea muy largo, se puede ajustar el espacio
 % antes y después de este en las dos primeras páginas para que quede centrado.
 
@@ -70,7 +68,7 @@
 %  \setlength{\beftitle}{105\p@\@plus24\p@}
 %  \setlength{\afttitle}{65\p@}
 %\makeatother
->>>>>>> origin/master
+% >>>>>>> origin/master
 
 \begin{document}
 
@@ -78,64 +76,38 @@
 \version{1}                                     % manuscript version #
 
 \title[(LONG THESIS TITLE)]
-   {\bf (LONG THESIS TITLE)}       
+{\bf (LONG THESIS TITLE)}
 \author[Author's Name]{Author's name}
 
 \address{Escuela de Ingenier\'ia\\
-                   Pontificia Universidad Cat\'olica de Chile\\ 
-                   Vicu\~na Mackenna 4860\\
-                  Santiago, Chile\\
-                  {\it Tel.\/} : 56 (2) 354-2000}
+Pontificia Universidad Cat\'olica de Chile\\
+Vicu\~na Mackenna 4860\\
+Santiago, Chile\\
+{\it Tel.\/} : 56 (2) 354-2000}
 \email{username@uc.cl}
 
 \facultyto    {the School of Engineering}
 %\department   {}
-\faculty                             {Faculty of Engineering}
-\degree                  {Master of Science in Engineering}  %   {Mag\'ister en Ciencias de la Ingenier\'ia}  %        
-                                 % or {Doctor in Engineering Sciences}    % {Doctor en Ciencias de la Ingenier\'ia}
+\faculty                {Faculty of Engineering}
+\degree                  {Master of Science in Engineering}
 \advisor                            {Professor's name}
 \committeememberA {Member A}
 \guestmemberA            {Member B}
 \ogrsmember                 {Member C}
 \subject                            {Structural Engineering}
 \date                                 {Month Year}
-\copyrightname             {Author's name}
+\copyrightname             {Jorge Troncoso Morales}
 \copyrightyear               {MMXV}
-\dedication                      {Gratefully to my parents and siblings}
+% \dedication                      {Gratefully to my parents and siblings}
 
-%%%%%%%%%%%%%%%%%%%%
-%       PRELIMINARIES                              %
-%----------------------------------------------------%
-%      page i & ii: cover page                   %
-%      page iii: dedication                         %
-%%%%%%%%%%%%%%%%%%%%
 
 \NoChapterPageNumber
 \pagenumbering{roman}
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%
-%   EXTRA PAGES                                     %
-%----------------------------------------------------%
-%      page --: not used                             %
-%%%%%%%%%%%%%%%%%%%%
 
 %\newpage
 %\thispagestyle{empty}
-
-%----------------------------------------------------------------------%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%      page v: ACKNOWLEDGEMENTS                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\phantomsection \label{acknowledgements} % Comment if hyperref is unused
-\chapter*{ACKNOWLEDGEMENTS}           
-\input{./chapters/acknowledgments.tex}
-
-\cleardoublepage
-
-%----------------------------------------------------------------------%
 
 %%%%%%%%%%%%%%%%%%
 %          page v & up ---                      %
@@ -152,25 +124,7 @@
 \listoftables
 \cleardoublepage
 
-%----------------------------------------------------------------------%
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-%      page x & xi: ABSTRACT - RESUMEN        %
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-\phantomsection \label{abstract}
-\chapter*{ABSTRACT}
-\input{./chapters/abstract.tex}
-\cleardoublepage
-
-\phantomsection \label{resumen}
-\chapter*{RESUMEN}
-\input{./chapters/resumen.tex}
-\cleardoublepage
-
-%%%%%%%%%%%%%
-%   TEXT  OF THESIS     %
-%%%%%%%%%%%%%
+%%%%%%%%%%%%% TEXT  OF THESIS %%%%%%%%%%%%%
 
 \pagenumbering{arabic}
 
@@ -186,9 +140,7 @@
 \chapter[CONCLUSIONS]{Conclusions}
 \input{./chapters/conclusions.tex}
 
-%%%%%%%%%%%%%
-%       REFERENCES        %
-%%%%%%%%%%%%%
+%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%
 
 \cleardoublepage
 \phantomsection \label{references}
@@ -203,9 +155,7 @@
 
 \bibliography{Thesis}
 
-%%%%%%%%%%%%
-%      APPENDICES      %
-%%%%%%%%%%%%
+%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%
 
 \appendix % It is like a chapter, so each appendix (A, B, C...) must to be considered as a section
 
