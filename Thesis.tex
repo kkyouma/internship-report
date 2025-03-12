@@ -1,15 +1,8 @@
 % Select one class
 %\documentclass{pucthesis}		% For DVI
-\documentclass[pdftex]{pucthesis}	% For pdfLaTeX
-%\documentclass[spanish]{pucthesis}		% For DVI, in spanish
-%\documentclass[pdftex,spanish]{pucthesis}	% For pdfLaTeX, in spanish
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Nota: si usas español, algunos nombres      %
-%      debes cambiarlos manualmente en este     %
-%        documento. En teoría, nunca deberías       %
-%           modificar el archivo pucthesis.cls              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \documentclass[pdftex]{pucthesis}	% For pdfLaTeX
+% \documentclass[spanish]{pucthesis}		% For DVI, in spanish
+\documentclass[pdftex,spanish]{pucthesis}	% For pdfLaTeX, in spanish
 
 %%%%%%%%% Packages %%%%%%%%%
 
@@ -39,9 +32,10 @@
 
 % To make cites and references
 \usepackage[hidelinks,pdfusetitle,pdfdisplaydoctitle]{hyperref}
-\usepackage[notocbib]{apacite} 
-\usepackage{doi}
-\renewcommand{\doitext}{}
+\usepackage{csquotes}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+% \usepackage{doi}
+% \renewcommand{\doitext}{}
 
 %--------- NEW ENVIRONMENTS --------- You are free to remove or use it
 \newtheorem{definition}{\bf Definition}[chapter]
@@ -55,47 +49,38 @@
 \newtheorem{example}{\bf Example}[chapter]
 \newtheorem{remark}{Remark}[chapter]
 
-% <<<<<<< HEAD
 \makeatletter
   \setlength{\beftitle}{105\p@\@plus24\p@}
   \setlength{\afttitle}{65\p@}
 \makeatother
-% =======
-% En caso de que el título sea muy largo, se puede ajustar el espacio
-% antes y después de este en las dos primeras páginas para que quede centrado.
 
-%\makeatletter
-%  \setlength{\beftitle}{105\p@\@plus24\p@}
-%  \setlength{\afttitle}{65\p@}
-%\makeatother
-% >>>>>>> origin/master
+\addbibresource{Thesis.bib}
+
+% ---- Fin del preambulo ----
 
 \begin{document}
 
 \mdate{Month Day, Year}         % date manuscript changed
 \version{1}                                     % manuscript version #
 
-\title[(LONG THESIS TITLE)]
-{\bf (LONG THESIS TITLE)}
-\author[Author's Name]{Author's name}
+\title[Informe de practica: Pedidos Ya]
+{\bf Informe de practica: Pedidos Ya}
+\author[Jorge Troncoso Morales]{Jorge Troncoso Morales}
 
 \address{Escuela de Ingenier\'ia\\
-Pontificia Universidad Cat\'olica de Chile\\
-Vicu\~na Mackenna 4860\\
-Santiago, Chile\\
 {\it Tel.\/} : 56 (2) 354-2000}
-\email{username@uc.cl}
+\email{jorge.troncoso@alu.ucm.cl}
 
 \facultyto    {the School of Engineering}
 %\department   {}
-\faculty                {Faculty of Engineering}
+\faculty                {FACULTAD DE INGENIER\'IA}
 \degree                  {Master of Science in Engineering}
-\advisor                            {Professor's name}
+\advisor                            {Ivan Merino Rodrigez}
 \committeememberA {Member A}
 \guestmemberA            {Member B}
 \ogrsmember                 {Member C}
 \subject                            {Structural Engineering}
-\date                                 {Month Year}
+\date                                 {Marzo 2025}
 \copyrightname             {Jorge Troncoso Morales}
 \copyrightyear               {MMXV}
 % \dedication                      {Gratefully to my parents and siblings}
@@ -127,25 +112,26 @@ Santiago, Chile\\
 %%%%%%%%%%%%% TEXT  OF THESIS %%%%%%%%%%%%%
 
 \pagenumbering{arabic}
-
-\chapter[INTRODUCTION]{Introduction}
+\chapter[DESCRIPCION GENERAL DE LA EMPRESA]{descripcion general de la empresa}
 \input{./chapters/introduction.tex}
 
-\chapter[CHAPTER 1]{Chapter 1} \label{ch1}
+\chapter[ROLES Y RESPONSABILIDADES DE LA PRACTICA]{Roles y responsabilidades de la practica} \label{ch1}
 \input{./chapters/chapter1.tex}
 
-\chapter[CHAPTER 2]{Chapter 2} \label{ch2}
+\chapter[PROYECTOS Y TAREAS]{Proyectos y tareas} \label{ch2}
 \input{./chapters/chapter2.tex}
 
-\chapter[CONCLUSIONS]{Conclusions}
+\chapter[REFLECCIONES Y LECCIONES APRENDIDAS]{Reflecciones y lecciones aprendidas} \label{ch3}
+\input{./chapters/chapter3.tex}
+
+\chapter[CONCLUSIONSES]{Conclusionses}
 \input{./chapters/conclusions.tex}
 
 %%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%
 
 \cleardoublepage
 \phantomsection \label{references}
-\bibliographystyle{apacite}
-\renewcommand{\bibname}{REFERENCES}
+\renewcommand{\bibname}{REFERENCIAS}
 
 %%%% ACTIVAR SIGUIENTES 3 LINEAS SI POSTGRADO RECHAZA LA BIBLIOGRAFIA
 %\setlength{\bibleftmargin}{0em}
@@ -153,11 +139,11 @@ Santiago, Chile\\
 %\setlength{\bibitemsep}{1em}
 
 
-\bibliography{Thesis}
+\printbibliography
 
 %%%%%%%%%%%% APPENDICES %%%%%%%%%%%%
 
-\appendix % It is like a chapter, so each appendix (A, B, C...) must to be considered as a section
+\appendix
 
 \newpage
 \section[First Appendix]{First Appendix}
