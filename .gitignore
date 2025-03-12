@@ -1,18 +1,68 @@
-# LaTeX auxiliary files
+# LaTeX temporary files
 *.aux
+*.lof
 *.log
+*.lot
+*.fls
 *.out
 *.toc
-*.lof
-*.lot
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Bibliography auxiliary files (bibtex/biblatex/biber)
 *.bbl
+*.bcf
 *.blg
-*.synctex.gz
-*.fls
-*.fdb_latexmk
-*.pdfsync
+*-blx.aux
+*-blx.bib
 *.run.xml
 
-# Editor files
-*.backup
-*.swp
+# Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Intermediate documents
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Latexmk
+.latexmk
+
+# BibTeX
+*.bib.bak
+*.bib.sav
+
+# TikZ & PGF
+*.dpth
+*.md5
+*.auxlock
+
+# Highlighting
+/_minted*
+*.pyg
+
+# KBibTeX
+*~[0-9]*
+
+# Auto-generated figures directory
+figures/auto/
+
+# Makeindex log files
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# Comment these lines if you want to keep PDF files in your repo
+# *.pdf
+
+# Keep specific files (uncomment if needed)
+# !reference-document.pdf

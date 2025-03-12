@@ -1,17 +1,19 @@
-\contentsline {chapter}{\tocchapter {}{}{LIST OF FIGURES}}{iii}{section*.1}%
-\contentsline {chapter}{\tocchapter {}{}{LIST OF TABLES}}{iv}{section*.2}%
-\contentsline {chapter}{\tocchapter {}{1}{INTRODUCTION}}{1}{chapter.1}%
-\contentsline {chapter}{\tocchapter {}{2}{CHAPTER 1}}{2}{chapter.2}%
-\contentsline {section}{\tocsection {}{2.1}{First Section }}{2}{section.2.1}%
-\contentsline {subsection}{\tocsubsection {}{2.1.1}{First SubSection }}{2}{subsection.2.1.1}%
-\contentsline {subsection}{\tocsubsection {}{2.1.2}{Second SubSection }}{3}{subsection.2.1.2}%
-\contentsline {subsubsection}{\tocsubsubsection {}{2.1.2.1}{First sub sub section }}{4}{subsubsection.2.1.2.1}%
-\contentsline {section}{\tocsection {}{2.2}{Second Section }}{4}{section.2.2}%
-\contentsline {chapter}{\tocchapter {}{3}{CHAPTER 2}}{5}{chapter.3}%
+\contentsline {chapter}{\tocchapter {}{}{\'INDICE DE FIGURAS}}{iii}{section*.1}%
+\contentsline {chapter}{\tocchapter {}{}{\'INDICE DE TABLAS}}{iv}{section*.2}%
+\contentsline {chapter}{\tocchapter {}{1}{DESCRIPCION GENERAL DE LA EMPRESA}}{1}{chapter.1}%
+\contentsline {chapter}{\tocchapter {}{2}{ROLES Y RESPONSABILIDADES DE LA PRACTICA}}{2}{chapter.2}%
+\contentsline {section}{\tocsection {}{2.1}{Descripción General de la Posición: Courier Business Intern }}{2}{section.2.1}%
+\contentsline {section}{\tocsection {}{2.2}{Responsabilidades Clave }}{2}{section.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.2.1}{Análisis de Datos y Reporte}}{2}{subsection.2.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2.2}{Soporte en Operaciones}}{3}{subsection.2.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.2.3}{Presentación y Toma de Decisiones}}{3}{subsection.2.2.3}%
+\contentsline {section}{\tocsection {}{2.3}{Herramientas y Tecnologías Utilizadas }}{3}{section.2.3}%
+\contentsline {chapter}{\tocchapter {}{3}{PROYECTOS Y TAREAS}}{5}{chapter.3}%
 \contentsline {section}{\tocsection {}{3.1}{Figures and Tables }}{5}{section.3.1}%
 \contentsline {section}{\tocsection {}{3.2}{Equations }}{6}{section.3.2}%
-\contentsline {chapter}{\tocchapter {}{4}{CONCLUSIONS}}{7}{chapter.4}%
-\contentsline {chapter}{\tocchapter {}{}{REFERENCES}}{8}{chapter*.5}%
-\contentsline {chapter}{\tocappendix {}{}{APPENDIX}}{9}{appendix*.6}%
-\contentsline {section}{\tocsection {}{A}{First Appendix}}{10}{section.Alph0.1}%
-\contentsline {section}{\tocsection {}{B}{An Interesting Short Story}}{11}{section.Alph0.2}%
+\contentsline {chapter}{\tocchapter {}{4}{REFLECCIONES Y LECCIONES APRENDIDAS}}{7}{chapter.4}%
+\contentsline {chapter}{\tocchapter {}{5}{CONCLUSIONSES}}{8}{chapter.5}%
+\contentsline {chapter}{\tocchapter {}{}{REFERENCIAS}}{9}{chapter*.5}%
+\contentsline {chapter}{\tocappendix {}{}{ANEXO}}{10}{appendix*.6}%
+\contentsline {section}{\tocsection {}{A}{First Appendix}}{11}{section.Alph0.1}%
+\contentsline {section}{\tocsection {}{B}{An Interesting Short Story}}{12}{section.Alph0.2}%
