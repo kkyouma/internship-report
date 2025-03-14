@@ -12,7 +12,6 @@
 \floatstyle{boxed}
 \restylefloat{figure}
 \usepackage{subfigure}
-\usepackage{color}
 
 % Math packages
 \usepackage{amsmath}
@@ -37,6 +36,10 @@
 % \usepackage{doi}
 % \renewcommand{\doitext}{}
 
+\usepackage{glossaries}
+\makeglossaries
+\input{chapters/glossary_entries.tex}
+
 %--------- NEW ENVIRONMENTS --------- You are free to remove or use it
 \newtheorem{definition}{\bf Definition}[chapter]
 \newtheorem{property}{Property}[chapter]
@@ -56,9 +59,68 @@
 
 \addbibresource{Thesis.bib}
 
+% ----- THEME ----  (Optional)
+% Tokyo Night Theme Colors
+\usepackage{xcolor}
+
+% Define Tokyo Night color palette
+\definecolor{tokyoNightBg}{HTML}{1a1b26}
+\definecolor{tokyoNightFg}{HTML}{a9b1d6}
+\definecolor{tokyoNightBorder}{HTML}{3d59a1}
+\definecolor{tokyoNightBlue}{HTML}{7aa2f7}
+\definecolor{tokyoNightCyan}{HTML}{7dcfff}
+\definecolor{tokyoNightPurple}{HTML}{bb9af7}
+\definecolor{tokyoNightGreen}{HTML}{9ece6a}
+\definecolor{tokyoNightRed}{HTML}{f7768e}
+\definecolor{tokyoNightOrange}{HTML}{ff9e64}
+\definecolor{tokyoNightYellow}{HTML}{e0af68}
+\definecolor{tokyoNightComment}{HTML}{565f89}
+
+% Apply theme to document elements
+\pagecolor{tokyoNightBg}
+\color{tokyoNightFg}
+
+% Hyperlinks styling
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=tokyoNightBlue,
+    filecolor=tokyoNightGreen,
+    urlcolor=tokyoNightCyan,
+    citecolor=tokyoNightPurple
+}
+
+% Section headings styling
+% \usepackage{sectsty}
+% \sectionfont{\color{tokyoNightBlue}}
+% \subsectionfont{\color{tokyoNightPurple}}
+% \subsubsectionfont{\color{tokyoNightCyan}}
+
+
+% Optional: Code listings with Tokyo Night theme
+\usepackage{listings}
+\lstset{
+    backgroundcolor=\color{tokyoNightBg},
+    basicstyle=\color{tokyoNightFg}\ttfamily\small,
+    keywordstyle=\color{tokyoNightBlue},
+    commentstyle=\color{tokyoNightComment},
+    stringstyle=\color{tokyoNightGreen},
+    numberstyle=\tiny\color{tokyoNightComment},
+    identifierstyle=\color{tokyoNightFg},
+    frame=single,
+    rulecolor=\color{tokyoNightBorder},
+    showstringspaces=false
+}
+% Table styling
+\usepackage{colortbl}
+
+% Bibliography styling
+% \usepackage[backend=biber, style=numeric]{biblatex}
+% \renewcommand*{\bibfont}{\color{tokyoNightFg}}
 % ---- Fin del preambulo ----
 
 \begin{document}
+\arrayrulecolor{tokyoNightBorder}
 
 \mdate{Month Day, Year}         % date manuscript changed
 \version{1}                                     % manuscript version #
@@ -127,6 +189,8 @@
 \chapter[CONCLUSIONSES]{Conclusionses}
 \input{./chapters/conclusions.tex}
 
+
+
 %%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%
 
 \cleardoublepage
@@ -144,13 +208,7 @@
 %%%%%%%%%%%% APPENDICES %%%%%%%%%%%%
 
 \appendix
-
-\newpage
-\section[First Appendix]{First Appendix}
+\chapter[First Appendix]{First Appendix}
 \input{./chapters/appendix1.tex}
-
-\newpage
-\section[An Interesting Short Story]{An Interesting Short Story}
-\input{./chapters/appendix2.tex}
 
 \end{document}

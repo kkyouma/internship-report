@@ -11,6 +11,8 @@
 *.cb
 *.cb2
 .*.lb
+*.glo
+*.glsdefs
 
 # Bibliography auxiliary files (bibtex/biblatex/biber)
 *.bbl
