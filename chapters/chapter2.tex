@@ -1,8 +1,3 @@
-\section*{Confidencialidad y Proteccion de Datos}
-Este informe no incluye datos sensibles, personal (PPI) o propietario de Pedidos Ya Envios, en cumplimiento con las políticas de confidencialidad de la empresa y las mejores prácticas en la protección de datos. Todas las descripciones, análisis y visualizaciones presentadas han sido redactadas de manera general, sin exponer información real de la empresa o de sus clientes.
-
-El código incluido en este documento si es el original, sin embargo, no contiene datos reales de la compañía. Como analista de datos, la protección de la integridad y confidencialidad de la información ha sido una parte fundamental de mi labor durante la pasantía, garantizando el cumplimiento de estándares éticos y profesionales en el manejo de datos.
-
 \section{Tareas}
 \subsection{Revision de casos Jira}
 Pedidos Ya cuenta con un sistema de tickets dirigido tanto a clientes (B2B) como a consumidores (C2B). El servicio de PedidosYa Envios opera en ambos segmentos, por lo que se solicita frecuentemente el contacto con agentes de servicio para resolver incidencias en las órdenes. Para atender estos casos se sigue un Procedimiento Operativo Estándar (SOP) que define las acciones a seguir; sin embargo, cuando se presentan situaciones ambiguas, el caso se escala directamente al equipo de Courier para su revisión.
@@ -12,6 +7,58 @@ Esta tarea, una de las más rutinarias realizadas, consistía en revisar el hist
 Es importante señalar que, aunque esta tarea es rutinaria y no implica una responsabilidad crítica, una gestión inadecuada podría generar fricción con consumidores o clientes B2B. Además, esta actividad se llevó a cabo durante las primeras tres semanas del internado, para posteriormente ser transferida a un equipo especializado en la sede central de Uruguay.
 
 \subsection{Analisis de datos}
+
+El area Courier de PedidosYa suele trabajar con KPI's similares a los de PedidosYa en general, como pueden ser:
+
+\begin{itemize}
+	\item Fail Rate \eqref{eq:FR}: Para medir la tasa de ordenes que no suelen ser exitosas. \textbf{Se busca reducir.}
+
+	      \begin{equation} \label{eq:FR}
+		      \text{Fail Rate} = \frac{\text{Rejected Orders}}{\text{Total Orders}} \times 100\%
+	      \end{equation}
+
+	\item Acceptance Rate \eqref{eq:AR}: Cuando una orden es emitida, se envia una notifiacion a los repartidores o \textit{Riders}, dicha orden puede ser aceptada o rechazada. El Acceptance Rate mide la tasa con la que los repartidores aceptan las ordenes. \textbf{Se busca aumentar.}
+	      \begin{equation} \label{eq:AR}
+		      \text{Acceptance Rate} = \frac{\text{Riders Accept}}{\text{Riders Notified}} \times 100\%
+	      \end{equation}
+	\item Vendor Late \eqref{eq:VL}: Una orden tiene varias fases desde que se emite la orden hasta que es entregada por el rider, uno de los mas importantes es el Vendor Late, el cual mide el tiempo que pasa desde el que el Rider llega al local y se le es entregada la orden. \textbf{Se busca reducir.}
+	      \begin{equation}\label{eq:VL}
+		      \text{Vendor Late} = \text{Pick up datetime} - \text{Rider Arrival datetime}
+	      \end{equation}
+\end{itemize}
+
+Una vez comprendido los principales KPI's del negocio, fue necesario estudiar los datos de los que dispone PedidosYa. Estos suelen estar alojados en BigQuery, por lo que para acceder a ellos se debio hacer mediante permisos y la ejecucion de \textit{Queries} en usando SQL.
+
+El Fail Rate suele estar sujeto a un monton de causas, para no relevar exactamente cuales son las problematicas afectan PedidosYa Envios, se usaran nombre genericos. El dataset usado en tareas rutinarias de analisis de datos tenia siguientes campos:
+
+\begin{table}[htbp]
+\caption{Dataset de órdenes registradas}
+  \raggedright
+	\label{tab:main_dataset}
+	\begin{threeparttable}
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Field}         & \textbf{Datatype} \\
+			\midrule
+			order\_id              & Integer           \\
+			partner\_id            & Integer           \\
+			date                   & Datetime          \\
+			status\_BO             & String            \\
+			partner                & String            \\
+			partner\_or\_franchise & String            \\
+			reason\_text           & String            \\
+			globalCode             & Integer           \\
+			declared\_value        & Float             \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}[para]
+			\small
+			\textit{Nota.} Los tipos de datos son presentados de forma genérica.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+Este dataset es una pesudo tabla de hechos, que contiene el registro de todos las ordenes realizadas. La query para este dataset generalmente solo se limitaba para traer las ordenes del mes.
 \subsection{Presentacion semanal de insights}
 \section{Proyectos}
 \subsection{Presentacion para clientes B2B}
