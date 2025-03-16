@@ -11,7 +11,7 @@
 \usepackage{float}
 \floatstyle{boxed}
 \restylefloat{figure}
-\usepackage{subfigure}
+\usepackage{subfig}
 
 % Math packages
 \usepackage{amsmath}
@@ -24,6 +24,9 @@
 % To make pretty tables
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{caption}
+
 
 % To avoid underfull errors in the bibliography
 \usepackage{etoolbox}
@@ -129,23 +132,22 @@
 {\bf Informe de practica: Pedidos Ya}
 \author[Jorge Troncoso Morales]{Jorge Troncoso Morales}
 
-\address{Escuela de Ingenier\'ia\\
-{\it Tel.\/} : 56 (2) 354-2000}
-\email{jorge.troncoso@alu.ucm.cl}
+\address                    {}
+\email                      {jorge.troncoso@alu.ucm.cl}
 
-\facultyto    {the School of Engineering}
-%\department   {}
-\faculty                {FACULTAD DE INGENIER\'IA}
-\degree                  {Master of Science in Engineering}
-\advisor                            {Ivan Merino Rodrigez}
-\committeememberA {Member A}
-\guestmemberA            {Member B}
+\facultyto                  {the School of Engineering}
+%\department                {}
+\faculty                    {FACULTAD DE INGENIER\'IA}
+\degree                     {Master of Science in Engineering}
+\advisor                    {Ivan Merino Rodrigez}
+\committeememberA           {Member A}
+\guestmemberA               {Member B}
 \ogrsmember                 {Member C}
-\subject                            {Structural Engineering}
-\date                                 {Marzo 2025}
-\copyrightname             {Jorge Troncoso Morales}
-\copyrightyear               {MMXV}
-% \dedication                      {Gratefully to my parents and siblings}
+\subject                    {Structural Engineering}
+\date                       {Marzo 2025}
+\copyrightname              {Jorge Troncoso Morales}
+\copyrightyear              {2025}
+% \dedication               {Gratefully to my parents and siblings}
 
 
 \NoChapterPageNumber
@@ -207,8 +209,20 @@
 
 %%%%%%%%%%%% APPENDICES %%%%%%%%%%%%
 
+\makeatletter
+\renewcommand{\appendix}{%
+  \setcounter{chapter}{0}%
+  \renewcommand\@chapapp{\appendixname}%
+  \renewcommand\thechapter{\@Alph\c@chapter}%
+}
+\makeatother
+
 \appendix
 \chapter[First Appendix]{First Appendix}
 \input{./chapters/appendix1.tex}
+
+\newpage
+\section[Glossary]{Glossary}
+\printglossary[title=Glossary]
 
 \end{document}
