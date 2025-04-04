@@ -39,9 +39,6 @@
 % \usepackage{doi}
 % \renewcommand{\doitext}{}
 
-\usepackage{glossaries}
-\makeglossaries
-\input{chapters/glossary_entries.tex}
 
 %--------- NEW ENVIRONMENTS --------- You are free to remove or use it
 \newtheorem{definition}{\bf Definition}[chapter]
@@ -79,41 +76,37 @@
 \definecolor{tokyoNightYellow}{HTML}{e0af68}
 \definecolor{tokyoNightComment}{HTML}{565f89}
 
+
+\usepackage[macchiato]{catppuccinpalette}
+
 % Apply theme to document elements
-\pagecolor{tokyoNightBg}
-\color{tokyoNightFg}
+% \pagecolor{tokyoNightBg}
+% \color{tokyoNightFg}
 
 % Hyperlinks styling
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=tokyoNightBlue,
-    filecolor=tokyoNightGreen,
-    urlcolor=tokyoNightCyan,
-    citecolor=tokyoNightPurple
-}
-
-% Section headings styling
-% \usepackage{sectsty}
-% \sectionfont{\color{tokyoNightBlue}}
-% \subsectionfont{\color{tokyoNightPurple}}
-% \subsubsectionfont{\color{tokyoNightCyan}}
-
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=tokyoNightBlue,
+%     filecolor=tokyoNightGreen,
+%     urlcolor=tokyoNightCyan,
+%     citecolor=tokyoNightPurple
+% }
 
 % Optional: Code listings with Tokyo Night theme
-\usepackage{listings}
-\lstset{
-    backgroundcolor=\color{tokyoNightBg},
-    basicstyle=\color{tokyoNightFg}\ttfamily\small,
-    keywordstyle=\color{tokyoNightBlue},
-    commentstyle=\color{tokyoNightComment},
-    stringstyle=\color{tokyoNightGreen},
-    numberstyle=\tiny\color{tokyoNightComment},
-    identifierstyle=\color{tokyoNightFg},
-    frame=single,
-    rulecolor=\color{tokyoNightBorder},
-    showstringspaces=false
+\usepackage{minted}
+
+\setminted{
+    frame=lines,
+    style=material,
+    linenos,
+    numbersep=5mm,
+    breaklines,
+    breaksymbolleft=,
+    baselinestretch=0.9, % Reduced line spacing
+    fontsize=\scriptsize,
 }
+
 % Table styling
 \usepackage{colortbl}
 
@@ -123,7 +116,7 @@
 % ---- Fin del preambulo ----
 
 \begin{document}
-\arrayrulecolor{tokyoNightBorder}
+% \arrayrulecolor{tokyoNightBorder}
 
 \mdate{Month Day, Year}         % date manuscript changed
 \version{1}                                     % manuscript version #
@@ -135,16 +128,17 @@
 \address                    {}
 \email                      {jorge.troncoso@alu.ucm.cl}
 
-\facultyto                  {the School of Engineering}
-%\department                {}
-\faculty                    {FACULTAD DE INGENIER\'IA}
-\degree                     {Master of Science in Engineering}
-\advisor                    {Ivan Merino Rodrigez}
+\facultyto                  {FACULTAD DE INGENIER\'IA}
+% \department               {}
+% \faculty                  {}
+\degree                     {Ingeniero Civil Industrial}
+\advisor                    {Iv\'an Merino Rodr\'igez}
+\supervisor                 {Luis Miguel Rond\'on}
 \committeememberA           {Member A}
 \guestmemberA               {Member B}
 \ogrsmember                 {Member C}
 \subject                    {Structural Engineering}
-\date                       {Marzo 2025}
+\date                       {Abril 2025}
 \copyrightname              {Jorge Troncoso Morales}
 \copyrightyear              {2025}
 % \dedication               {Gratefully to my parents and siblings}
@@ -167,17 +161,20 @@
 
 \pdfbookmark{\contentsname}{toc}
 \tableofcontents
-\phantomsection \label{listoffigures}
-\listoffigures
-\phantomsection \label{listoftables}
-\listoftables
+% \phantomsection \label{listoffigures}
+% \listoffigures
+% \phantomsection \label{listoftables}
+% \listoftables
 \cleardoublepage
 
 %%%%%%%%%%%%% TEXT  OF THESIS %%%%%%%%%%%%%
 
 \pagenumbering{arabic}
-\chapter[DESCRIPCION GENERAL DE LA EMPRESA]{descripcion general de la empresa}
+\chapter[INTRODUCCION]{Introduccion}
 \input{./chapters/introduction.tex}
+
+\chapter[DESCRIPCION GENERAL DE LA EMPRESA]{descripcion general de la empresa}
+\input{./chapters/chapter0.tex}
 
 \chapter[ROLES Y RESPONSABILIDADES DE LA PRACTICA]{Roles y responsabilidades de la practica} \label{ch1}
 \input{./chapters/chapter1.tex}
@@ -211,18 +208,14 @@
 
 \makeatletter
 \renewcommand{\appendix}{%
-  \setcounter{chapter}{0}%
-  \renewcommand\@chapapp{\appendixname}%
-  \renewcommand\thechapter{\@Alph\c@chapter}%
+	\setcounter{chapter}{0}%
+	\renewcommand\@chapapp{\appendixname}%
+	\renewcommand\thechapter{\@Alph\c@chapter}%
 }
 \makeatother
 
 \appendix
-\chapter[First Appendix]{First Appendix}
+\chapter[Autorizacion de practica]{Autorizacion de practica}
 \input{./chapters/appendix1.tex}
-
-\newpage
-\section[Glossary]{Glossary}
-\printglossary[title=Glossary]
 
 \end{document}

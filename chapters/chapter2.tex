@@ -1,6 +1,6 @@
 \section{Tareas}
 \subsection{Revision de casos Jira}
-Pedidos Ya cuenta con un sistema de tickets dirigido tanto a clientes (B2B) como a consumidores (C2B). El servicio de PedidosYa Envios opera en ambos segmentos, por lo que se solicita frecuentemente el contacto con agentes de servicio para resolver incidencias en las órdenes. Para atender estos casos se sigue un Procedimiento Operativo Estándar (SOP) que define las acciones a seguir; sin embargo, cuando se presentan situaciones ambiguas, el caso se escala directamente al equipo de Courier para su revisión.
+Pedidos Ya cuenta con un sistema de tickets dirigido tanto a clientes (B2B) como a consumidores (C2C). El servicio de PedidosYa Envios opera en ambos segmentos, por lo que se solicita frecuentemente el contacto con agentes de servicio para resolver incidencias en las órdenes. Para atender estos casos se sigue un Procedimiento Operativo Estándar (SOP) que define las acciones a seguir; sin embargo, cuando se presentan situaciones ambiguas, el caso se escala directamente al equipo de Courier para su revisión.
 
 Esta tarea, una de las más rutinarias realizadas, consistía en revisar el historial de \textit{chat} acompañado de imágenes para comprender la situación. Se trataba de una gestión operativa enfocada en determinar si las órdenes fallidas (Fail Rate) debían ser compensadas o denegadas, requiriendo mayor criterio y objetividad que desafíos técnicos.
 
@@ -27,13 +27,13 @@ El area Courier de PedidosYa suele trabajar con KPI's similares a los de Pedidos
 	      \end{equation}
 \end{itemize}
 
-Una vez comprendido los principales KPI's del negocio, fue necesario estudiar los datos de los que dispone PedidosYa. Estos suelen estar alojados en BigQuery, por lo que para acceder a ellos se debio hacer mediante permisos y la ejecucion de \textit{Queries} en usando SQL.
+Teniendo estos KPI como referencia, fue necesario analizar los datos disponibles en PedidosYa. Estos se encuentran alojados en BigQuery, por lo que su acceso requirió permisos específicos y la ejecución de consultas (\textit{queries}) en SQL.
 
-El Fail Rate suele estar sujeto a un monton de causas, para no relevar exactamente cuales son las problematicas afectan PedidosYa Envios, se usaran nombre genericos. El dataset usado en tareas rutinarias de analisis de datos tenia siguientes campos:
+El Fail Rate puede estar influenciado por múltiples factores. Por razones de confidencialidad, las variables categóricas relacionadas con estas problemáticas serán presentadas con nombres genéricos. El dataset utilizado en las tareas rutinarias de análisis de datos contenía los siguientes campos:
 
-\begin{table}[htbp]
-\caption{Dataset de órdenes registradas}
-  \raggedright
+\begin{table}[H]
+	\caption{Dataset de órdenes registradas}
+	\raggedright
 	\label{tab:main_dataset}
 	\begin{threeparttable}
 		\begin{tabular}{lc}
@@ -53,12 +53,68 @@ El Fail Rate suele estar sujeto a un monton de causas, para no relevar exactamen
 		\end{tabular}
 		\begin{tablenotes}[para]
 			\small
-			\textit{Nota.} Los tipos de datos son presentados de forma genérica.
+			\textit{Nota:} Los tipos de datos estan nombrados con sus nombres genericos.
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table}
 
-Este dataset es una pesudo tabla de hechos, que contiene el registro de todos las ordenes realizadas. La query para este dataset generalmente solo se limitaba para traer las ordenes del mes.
-\subsection{Presentacion semanal de insights}
+Como Courier Business Intern, mi principal labor fue analizar los datos para mantener el Fail Rate en valores tolerables para cada partner e identificar cuales son las principales causas, determinado por \mintinline[style=default, fontsize=\small]{python}{globalCode}.
+
+Este dataset (Tabla \ref{tab:main_dataset}) funciona como una pseudo tabla de hechos, ya que contiene el registro de todas las órdenes realizadas. La consulta SQL utilizada para obtener estos datos generalmente se limitaba a extraer las órdenes del mes en curso.
+
+A partir de esta información, se realizaba un análisis diario para identificar las incidencias con mayor impacto en el Fail Rate, determinar qué \textit{partners} y locales eran los más afectados, y tomar medidas en consecuencia. Si se trataba de una problemática de rápida resolución, se implementaban acciones inmediatas. En otros casos, cuando un \textit{partner} representaba un alto costo logístico o afectaba significativamente las operaciones del área Courier, esta información se trasladaba a los Account Managers del equipo, quienes podían utilizarla como punto de presión en futuras negociaciones.
+
+
+% Caso 1
+Este último aspecto resultó clave en el caso de un \textit{partner} específico—al que llamaremos \textbf{Partner A}—que presentaba un número inusualmente alto de incidencias del \textbf{tipo X}, lo que incrementaba su Fail Rate. Tras un análisis detallado, se identificó que la causa principal era la negativa del \textit{partner} a utilizar el sistema de \textbf{PIN} en sus órdenes, lo que no solo afectaba el Fail Rate, sino que también impactaba la experiencia de los repartidores. Como resultado, se informó a los Account Managers para negociar la adopción del PIN o, en su defecto, un aumento en las tarifas.
+
+Por otro lado, si bien algunas incidencias tenían una interpretación y causa evidentes, en muchos casos presentaban cierto grado de ambigüedad. Para identificar la causa real del aumento en el Fail Rate, se aplicaron técnicas de \textbf{regresión}, con el objetivo de determinar si existía una relación \textit{lineal} entre las tasas de incidencia a lo largo del tiempo. Para ello, se utilizaron funciones de agregación sobre la columna categórica \mintinline[style=default,fontsize=\small]{python}{globalCode} (Tabla \ref{tab:main_dataset}).
+
+Este enfoque permitió analizar la variación de todos los tipos de incidencias en un período determinado y, a partir de ello, establecer una posible causalidad entre el aumento del Fail Rate y problemas reales inferidos mediante esta técnica de \textit{feature engineering}.
+
+En definitiva, el análisis de datos se enfocaba principalmente en monitorear los KPI, pero especialmente el Fail Rate en distintos períodos de tiempo (días, semanas o meses). Para ello, se aplicaban funciones de agregación, feature engineering y técnicas de correlación estadística, con el fin de interpretar e inferir las causas de las variaciones en este indicador.
+
+
+\subsection{Presentación semanal de insights}
+
+Una de las tareas más desafiantes fue la presentación semanal de insights producto del análisis de datos. Esta tarea se realizaba todos los lunes de manera presencial en una reunión denominada \textit{Weekly}, en la que participaban todos los miembros del equipo: el \textbf{Manager}, dos \textbf{Account Managers}, dos \textbf{Key Account Manager}, el \textbf{Sr. Analyst} y, ocasionalmente, \textbf{managers} o analistas de otras áreas. Durante la reunión, cada integrante exponía y comunicaba al equipo información relevante sobre operaciones, aspectos financieros, estado de los partners e insights encontrados en los análisis.
+
+En mi rol como \textbf{intern}, fui responsable de exponer hallazgos relacionados con el análisis del Fail Rate. Esto requería sintetizar datos que, aunque para mí eran claros, podían resultar confusos en el contexto de la reunión. Por ello, mi presentación se centraba en torno a tres puntos clave:
+
+\begin{enumerate}
+	\item \textbf{Variación de la tasa de Fail Rate entre los principales partners en un Line Plot WoW (Week over Week):} Se identificaban los partners con mayor aumento o disminución en su Fail Rate, explicando las posibles causas detrás de estas fluctuaciones.
+	\item \textbf{Variación de la tasa de tipos de incidencias en un HeatMap WoW:} Se analizaba la evolución semanal de los diferentes tipos de incidencias, buscando patrones o anomalías en los datos.
+	\item \textbf{Flujo de órdenes de los principales partners y su destino en función de las incidencias en un diagrama Sankey:} Se visualizaba cómo se distribuían las órdenes entre los distintos tipos de incidencias, proporcionando un panorama detallado de los cuellos de botella o puntos críticos en la operación.
+\end{enumerate}
+
+Además de la presentación de datos, otro aspecto clave de esta tarea fue la interpretación y comunicación efectiva de los resultados. Para garantizar que los insights fueran comprensibles y accionables, empleé las siguientes estrategias:
+
+\begin{itemize}
+	\item \textbf{Uso de visualizaciones efectivas:} Se priorizó el uso de gráficos intuitivos y fáciles de interpretar, evitando sobrecargar las presentaciones con información excesiva.
+	\item \textbf{Enfoque en la relevancia del negocio:} En cada insight, se destacaba su impacto en la operación y su relevancia para la toma de decisiones estratégicas.
+	\item \textbf{Propuestas de acción basadas en datos:} Se sugerían medidas correctivas o preventivas en función de los hallazgos, permitiendo que el equipo tomara decisiones informadas.
+	\item \textbf{Feedback y aprendizaje continuo:} Tras cada presentación, recibía comentarios del equipo, lo que me permitió mejorar la claridad y enfoque de mis análisis en reuniones posteriores.
+\end{itemize}
+
+El desarrollo de esta actividad fortaleció mis habilidades en la comunicación de datos, permitiéndome traducir información técnica en insights accionables para la empresa. Asimismo, me permitió trabajar en un entorno colaborativo con distintos departamentos, lo que enriqueció mi comprensión del negocio y la toma de decisiones estratégicas.
+
+
 \section{Proyectos}
-\subsection{Presentacion para clientes B2B}
+\subsection{Presentación para clientes B2B}
+
+Más allá de las tareas diarias, que solían ser rutinarias y podían variar de un día a otro, mi proyecto más importante fue la creación de una presentación dinámica para las principales Key Accounts.
+
+PedidosYa Envíos, de manera generalmente mensual, realiza reportes y presentaciones de desempeño para sus partners más importantes. El propósito de estas presentaciones es informar sobre los principales KPI, como el Fail Rate, Acceptance Rate y Vendor Late, tanto a nivel general del partner como desglosado por sucursal. Al recibir estas estadísticas, los partners pueden comprender mejor qué acciones tomar para optimizar sus operaciones. Dado que el servicio Courier funciona como una extensión del negocio del partner dentro de un modelo B2B, es también de interés para PedidosYa que sus partners mejoren su desempeño.
+
+Para la implementación de esta solución, se utilizó gran parte de la Suite de Google, combinando \textbf{Google Slides}, \textbf{Google Sheets} y \textbf{BigQuery}. Se creó un pipeline de datos que extraía la información directamente desde la base de datos en BigQuery hacia Google Sheets. Allí, se aplicaban diversas tablas dinámicas para procesar y transformar la información en gráficos y tablas simplificadas, las cuales se integraban automáticamente en Google Slides. Este flujo de trabajo permitía que todos los datos se actualizaran automáticamente al inicio de cada mes, garantizando que la información presentada a los partners estuviera siempre actualizada y alineada con el último periodo evaluado.
+
+La presentación debía ser concisa y efectiva, asegurando que la \textbf{Key Account Manager} (KAM) de Courier pudiera exponer los resultados en menos de 30 minutos. La estructura de la presentación se diseñó de la siguiente manera:
+
+\begin{enumerate}
+	\item \textbf{Resumen ejecutivo:} La primera diapositiva mostraba directamente los KPI principales y su variación respecto al mes anterior.
+	\item \textbf{Evolución temporal:} Un \textbf{timeline} con la cantidad de órdenes y la variación del \textbf{Fail Rate} \textit{Day over Day} durante el mes.
+	\item \textbf{Análisis de incidencias:} Un \textbf{Heatmap} de los principales tipos de incidencias que contribuyeron al \textbf{Fail Rate}.
+	\item \textbf{Rendimiento por sucursal:} Dos diapositivas dedicadas a identificar las \textbf{mejores} y \textbf{peores} sucursales, mostrando su evolución según distintos KPI clave.
+\end{enumerate}
+
+Este proyecto permitió automatizar y optimizar la elaboración de reportes para los partners reduciendo el tiempo requerido para su preparación y mejorando la calidad de la información presentada. Además, reforzó la comunicación entre el equipo de Courier y los partners facilitando la toma de decisiones estratégicas basadas en datos.

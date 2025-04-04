@@ -447,10 +447,11 @@
 			\hspace{7.5mm}% shif right to compensante left-shift and 13mm-off-margin
 			\hspace{20pt}%
 			\parbox{.75\textwidth}{%parbox 2
-				\@university\\
+        \@university\\[-2pt]
+        \@faculty\\[-2pt]
 				\@school%\\
-				\ifx\@empty\@department {}%{Department of .........}
-				\else{\\\@department}\fi}\\ %end parbox 2
+				\ifx\@empty\@department {}%
+      \else{\\[-2pt]\@department}\fi}\\ %end parbox 2
 			% --- Draw horizontal decorative line ---
 			\setlength{\auxdist}{\textwidth}%
 			\addtolength{\auxdist}{13mm}%
@@ -517,16 +518,15 @@
 		}%end centering
 }
 \vskip10\p@\@plus14\p@
-%%
-%% Advisor
-%%
+
+% Advisor ------------------
 \prepresentedto
 \vtop{%\centering
 {%
 \hspace{100pt}%
 \parbox[t]{.75\textwidth}{%
 \if\spanish@true 1
-	\noindent Profesor Supervisor:\\
+	\noindent Profesor Guia:\\
 \else
 	\noindent
 	Advisor:\\
@@ -535,7 +535,25 @@
 \ifx\@empty\@advisor {.........}\else{\uppercase\@advisor}\fi}}%end parbox
 }%end centering
 }
-\vskip5\p@\@plus14\p@
+\vskip15\p@\@plus24\p@
+
+% Add Company Supervisor section -----------------
+\ifx\@empty\@supervisor\else
+	\vtop{%\centering
+	{%
+	\hspace{100pt}%
+	\parbox[t]{.75\textwidth}{%
+	\if\spanish@true 1
+		\noindent Supervisor Empresa:\\
+	\else
+		\noindent Company Supervisor:\\
+	\fi
+	{%\large 
+	\uppercase\@supervisor}}%end parbox
+	}%end centering
+	}
+	\vskip5\p@\@plus14\p@
+\fi
 %%
 %% The date
 %%
@@ -544,14 +562,15 @@
 \hspace{100pt}%
 \parbox[t]{.75\textwidth}{
 	\noindent
-	\rm Santiago de Chile, \ifx\@empty\@date {\MoYr}\else\@date\fi
+	\rm Talca, Chile, \ifx\@empty\@date {\MoYr}\else\@date\fi
 }%end parbox
 \vskip5\p@\@plus14\p@
 %\vfill
 \hspace{100pt}%
 \parbox[t]{.75\textwidth}{
 	\noindent
-	\copyrightline}%end parbox
+	% \copyrightline
+}%end parbox
 \endgroup
 \clearpage  \thispagestyle{empty}
 %%
@@ -559,172 +578,172 @@
 %% Repreat title page, but now include all committee members.
 %%
 %%
-\cleardoublepage  \thispagestyle{empty}
-\begingroup
-\normalfont\normalsize
-\topskip0\p@  % 
-\advance\topskip-\headsep \advance\topskip-\headheight
-\vskip12\p@\@plus12\p@
-\vspace*{-20mm}
-%%
-%% University/School/Department
-%%
-\vtop{%\centering
-	{%
-			\noindent
-			%\parbox[t]{70pt}{\rule[-48pt]{72pt}{72pt}}
-			%       \raisebox{-22.13mm}[0em][0em]
-			%       {            
-			%\hspace{80pt}
-			%    \raisebox{29.38mm}[0em][0em]{%
-			%                 \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
-			% --- Draw vertical left edge (reference margin) ---
-			\raisebox{0mm}[0em][0em]{%
-				\rule[-\textheight]{.0pt}{\textheight}}\\[-\normalbaselineskip]
-			% --- Draw horizontal top edge (reference margin) ---
-			\raisebox{0mm}[0em][0em]{%
-				\rule[0pt]{\textwidth}{.0pt}}\\[-\normalbaselineskip]
-			% --- Draw vertical decorative line ---
-			\hspace*{80pt}%
-			%\rule[0em]{80pt}{0pt}%       
-			% Note: Must use a trailing '%' 
-			% otherwise a small space will be added due to the line feed.
-			\vspace*{-4mm}%
-			\setlength{\auxdist}{\textheight}%
-			\addtolength{\auxdist}{19mm}%
-			\raisebox{4mm}[0em][0em]{%
-				\rule[-\auxdist]{.5pt}{\auxdist}}\\[-0\normalbaselineskip]
-			\hspace*{-7.5mm}% shif left half 13mm-off-margin
-			\parbox{80pt}
-			{\centering %\rule[0em]{80pt}{1ex}\\
-				\if \pdftex@true 1% Use PDF version if using pdflatex
-					\includegraphics*[width=23mm]{./figures/LogoUC.pdf}\\[.2\normalbaselineskip]
-				\else% Use PS version by default (dvips).
-					\includegraphics*[width=23mm]{./figures/LogoUC.ps} \\[.2\normalbaselineskip] % ,height=30.38mm
-				\fi
-				%            \raisebox{29.38mm}[0em][0em]{%
-				%                         \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
-				%            \raisebox{17.38mm}[0em][0em]{%
-				%                         \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
-			}%
-			%       }
-			\hspace{7.5mm}% shif right to compensante left-shift and 13mm-off-margin
-			\hspace{20pt}%
-			\parbox{.75\textwidth}{%parbox 2
-				\@university\\
-				\@school%\\
-				\ifx\@empty\@department {}%{Department of .........}
-				\else{\\\@department}\fi}\\ %end parbox 2
-			% --- Draw horizontal decorative line ---
-			\setlength{\auxdist}{\textwidth}%
-			\addtolength{\auxdist}{13mm}%
-			\addtolength{\auxdist}{15mm}%
-			\hspace*{-13mm}%
-			\rule[0pt]{\auxdist}{.5pt}
-		}%end centering
-} %end vtop
-\vskip\beftitle %  \vskip105\p@\@plus24\p@
-%%
-%% Title
-%%
-\setlength{\auxdist}{\textwidth}%
-\addtolength{\auxdist}{-120pt}%
-\addtolength{\auxdist}{15mm}%
-\vtop{%\centering
-	{%
-			\hspace{100pt}%
-			\parbox[t]{\auxdist}{\centering \noindent
-				\uppercasenonmath{\@title}
-				\bfseries\Large%\LARGE
-				\@title\@@par}%end parbox
-		}%end centering
-	% \global\dimen@i\prevdepth
-}%end vtop
-\prevdepth\dimen@i
-\vskip\afttitle %  \vskip65\p@%
-%%
-%% Author(s)
-%%
-%\hspace{80pt}
-%\parbox[t]{.75\textwidth}{\centering
-\ifx\@empty\authors\else
-	\vtop{\andify\authors
-		%\centering
-		{%
-			\hspace{100pt}%
-			\parbox[t]{\auxdist}{\centering \noindent
-				{\bfseries\large\MakeUppercase\authors}\@@par}%end parbox
-		}%
-		%\global\dimen@i\prevdepth
-	}\relax%
-	%}%end parbox
-	\prevdepth\dimen@i
-\fi
-\vskip15\p@\@plus12\p@
-%%
-%% Members of the Committee
-%%
-\prepresentedto
-\vtop{%\centering
-{%
-\hspace{100pt}%
-\parbox[t]{.75\textwidth}{%
-\if\spanish@true 1
-	\noindent
-	Miembros del Comit\'e:\\
-\else
-	\noindent
-	Members of the Committee:\\
-\fi
-{\normalsize
-\ifx\@empty\@advisor {.........}\\\else{\uppercase\@advisor}\\\fi
-\ifx\@empty\@committeememberA {.........}\\\else{\uppercase\@committeememberA}\\\fi
-\ifx\@empty\@committeememberB {}\else{\uppercase\@committeememberB}\\\fi
-\ifx\@empty\@guestmemberA {.........}\\\else{\uppercase\@guestmemberA}\\\fi
-\ifx\@empty\@guestmemberB {}\else{\uppercase\@guestmemberB}\\\fi
-\ifx\@empty\@ogrsmember {.........}\else{\uppercase\@ogrsmember}\fi}
-}%end parbox
-}%end centering
-}
-\vskip5\p@\@plus14\p@
-%%
-%% Blah, Blah...
-%%
-\prepresentedto
-\vtop{%\centering
-	{%
-			\hspace{100pt}%
-			\parbox[t]{.75\textwidth}{
-				\if\spanish@true 1
-					\noindent Tesis para optar al grado de \\
-					\ifx\@empty\@degree {.........}\else\@degree\fi
-				\else
-					\noindent
-					Thesis submitted to the Office of Research and Graduate Studies\\
-					in partial fulfillment of the requirements for the degree of\\
-					\ifx\@empty\@degree {.........}\else\@degree\fi
-				\fi}%end parbox
-		}%end centering
-}
-\vskip10\p@\@plus14\p@
-%%
-%% The date
-%%
-%\centerline{\rm\ifx\@empty\@date {\MoYr}\else\@date\fi}
-\vfill
-\hspace{100pt}%
-\parbox[t]{.75\textwidth}{
-	\noindent
-	\rm Santiago de Chile, \ifx\@empty\@date {\MoYr}\else\@date\fi
-}%end parbox
-\vskip5\p@\@plus14\p@
-%\vfill
-\hspace{100pt}%
-\parbox[t]{.75\textwidth}{
-	\noindent
-	\copyrightline}%end parbox
-\endgroup
-\clearpage  \thispagestyle{empty}
+% \cleardoublepage  \thispagestyle{empty}
+% \begingroup
+% \normalfont\normalsize
+% \topskip0\p@  % 
+% \advance\topskip-\headsep \advance\topskip-\headheight
+% \vskip12\p@\@plus12\p@
+% \vspace*{-20mm}
+% %%
+% %% University/School/Department
+% %%
+% \vtop{%\centering
+% 	{%
+% 			\noindent
+% 			%\parbox[t]{70pt}{\rule[-48pt]{72pt}{72pt}}
+% 			%       \raisebox{-22.13mm}[0em][0em]
+% 			%       {            
+% 			%\hspace{80pt}
+% 			%    \raisebox{29.38mm}[0em][0em]{%
+% 			%                 \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
+% 			% --- Draw vertical left edge (reference margin) ---
+% 			\raisebox{0mm}[0em][0em]{%
+% 				\rule[-\textheight]{.0pt}{\textheight}}\\[-\normalbaselineskip]
+% 			% --- Draw horizontal top edge (reference margin) ---
+% 			\raisebox{0mm}[0em][0em]{%
+% 				\rule[0pt]{\textwidth}{.0pt}}\\[-\normalbaselineskip]
+% 			% --- Draw vertical decorative line ---
+% 			\hspace*{80pt}%
+% 			%\rule[0em]{80pt}{0pt}%       
+% 			% Note: Must use a trailing '%' 
+% 			% otherwise a small space will be added due to the line feed.
+% 			\vspace*{-4mm}%
+% 			\setlength{\auxdist}{\textheight}%
+% 			\addtolength{\auxdist}{19mm}%
+% 			\raisebox{4mm}[0em][0em]{%
+% 				\rule[-\auxdist]{.5pt}{\auxdist}}\\[-0\normalbaselineskip]
+% 			\hspace*{-7.5mm}% shif left half 13mm-off-margin
+% 			\parbox{80pt}
+% 			{\centering %\rule[0em]{80pt}{1ex}\\
+% 				\if \pdftex@true 1% Use PDF version if using pdflatex
+% 					\includegraphics*[width=23mm]{./figures/LogoUC.pdf}\\[.2\normalbaselineskip]
+% 				\else% Use PS version by default (dvips).
+% 					\includegraphics*[width=23mm]{./figures/LogoUC.ps} \\[.2\normalbaselineskip] % ,height=30.38mm
+% 				\fi
+% 				%            \raisebox{29.38mm}[0em][0em]{%
+% 				%                         \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
+% 				%            \raisebox{17.38mm}[0em][0em]{%
+% 				%                         \rule[-\textheight]{.5pt}{\textheight}}\\[2mm]
+% 			}%
+% 			%       }
+% 			\hspace{7.5mm}% shif right to compensante left-shift and 13mm-off-margin
+% 			\hspace{20pt}%
+% 			\parbox{.75\textwidth}{%parbox 2
+% 				\@university\\
+% 				\@school%\\
+% 				\ifx\@empty\@department {}%{Department of .........}
+% 				\else{\\\@department}\fi}\\ %end parbox 2
+% 			% --- Draw horizontal decorative line ---
+% 			\setlength{\auxdist}{\textwidth}%
+% 			\addtolength{\auxdist}{13mm}%
+% 			\addtolength{\auxdist}{15mm}%
+% 			\hspace*{-13mm}%
+% 			\rule[0pt]{\auxdist}{.5pt}
+% 		}%end centering
+% } %end vtop
+% \vskip\beftitle %  \vskip105\p@\@plus24\p@
+% %%
+% %% Title
+% %%
+% \setlength{\auxdist}{\textwidth}%
+% \addtolength{\auxdist}{-120pt}%
+% \addtolength{\auxdist}{15mm}%
+% \vtop{%\centering
+% 	{%
+% 			\hspace{100pt}%
+% 			\parbox[t]{\auxdist}{\centering \noindent
+% 				\uppercasenonmath{\@title}
+% 				\bfseries\Large%\LARGE
+% 				\@title\@@par}%end parbox
+% 		}%end centering
+% 	% \global\dimen@i\prevdepth
+% }%end vtop
+% \prevdepth\dimen@i
+% \vskip\afttitle %  \vskip65\p@%
+% %%
+% %% Author(s)
+% %%
+% %\hspace{80pt}
+% %\parbox[t]{.75\textwidth}{\centering
+% \ifx\@empty\authors\else
+% 	\vtop{\andify\authors
+% 		%\centering
+% 		{%
+% 			\hspace{100pt}%
+% 			\parbox[t]{\auxdist}{\centering \noindent
+% 				{\bfseries\large\MakeUppercase\authors}\@@par}%end parbox
+% 		}%
+% 		%\global\dimen@i\prevdepth
+% 	}\relax%
+% 	%}%end parbox
+% 	\prevdepth\dimen@i
+% \fi
+% \vskip15\p@\@plus12\p@
+% %%
+% %% Members of the Committee
+% %%
+% \prepresentedto
+% \vtop{%\centering
+% {%
+% \hspace{100pt}%
+% \parbox[t]{.75\textwidth}{%
+% \if\spanish@true 1
+% 	\noindent
+% 	Miembros del Comit\'e:\\
+% \else
+% 	\noindent
+% 	Members of the Committee:\\
+% \fi
+% {\normalsize
+% \ifx\@empty\@advisor {.........}\\\else{\uppercase\@advisor}\\\fi
+% \ifx\@empty\@committeememberA {.........}\\\else{\uppercase\@committeememberA}\\\fi
+% \ifx\@empty\@committeememberB {}\else{\uppercase\@committeememberB}\\\fi
+% \ifx\@empty\@guestmemberA {.........}\\\else{\uppercase\@guestmemberA}\\\fi
+% \ifx\@empty\@guestmemberB {}\else{\uppercase\@guestmemberB}\\\fi
+% \ifx\@empty\@ogrsmember {.........}\else{\uppercase\@ogrsmember}\fi}
+% }%end parbox
+% }%end centering
+% }
+% \vskip5\p@\@plus14\p@
+% %%
+% %% Blah, Blah...
+% %%
+% \prepresentedto
+% \vtop{%\centering
+% 	{%
+% 			\hspace{100pt}%
+% 			\parbox[t]{.75\textwidth}{
+% 				\if\spanish@true 1
+% 					\noindent Tesis para optar al grado de \\
+% 					\ifx\@empty\@degree {.........}\else\@degree\fi
+% 				\else
+% 					\noindent
+% 					Thesis submitted to the Office of Research and Graduate Studies\\
+% 					in partial fulfillment of the requirements for the degree of\\
+% 					\ifx\@empty\@degree {.........}\else\@degree\fi
+% 				\fi}%end parbox
+% 		}%end centering
+% }
+% \vskip10\p@\@plus14\p@
+% %%
+% %% The date
+% %%
+% %\centerline{\rm\ifx\@empty\@date {\MoYr}\else\@date\fi}
+% \vfill
+% \hspace{100pt}%
+% \parbox[t]{.75\textwidth}{
+% 	\noindent
+% 	\rm Santiago de Chile, \ifx\@empty\@date {\MoYr}\else\@date\fi
+% }%end parbox
+% \vskip5\p@\@plus14\p@
+% %\vfill
+% \hspace{100pt}%
+% \parbox[t]{.75\textwidth}{
+% 	\noindent
+% 	\copyrightline}%end parbox
+% \endgroup
+% \clearpage  \thispagestyle{empty}
 %% %
 %%
 %%
@@ -753,10 +772,10 @@
 \version{0}
 
 \def\university#1{\def\@university{{\normalfont#1}}}
-\university{PONTIFICIA UNIVERSIDAD CAT\'OLICA DE CHILE} % originally \large
+\university{UNIVERSIDAD CAT\'OLICA DEL MAULE} % originally \large
 %
 \def\school#1{\def\@school{{\normalfont#1}}}
-\school{ESCUELA DE INGENIER\'IA} % originally \large
+\school{ESCUELA DE INGENIER\'IA CIVIL INDUSTRIAL} % originally \large
 %
 \def\facultyto#1{\def\@facultyto{{\normalfont\rm#1}}}
 \facultyto{{\rm Escuela de Ingenier\'ia}}
@@ -765,11 +784,17 @@
 \def\@department{}
 %
 \def\faculty#1{\def\@faculty{{\normalfont\rm#1}}}
-\def\@faculty{}
-%
+\def\@faculty{FACULTAD DE CIENCIAS DE LA INGENIER\'IA}
+
+% Tutor
 \def\advisor#1{\def\@advisor{{\normalfont\rm#1}}}
 \def\@advisor{}
 %
+
+% Supervisor
+\def\supervisor#1{\def\@supervisor{{\normalfont\rm#1}}}
+\def\@supervisor{}
+
 \def\committeememberA#1{\def\@committeememberA{{\normalfont\rm#1}}}
 \def\@committeememberA{}
 %
@@ -844,6 +869,7 @@
 	%
 	\do\department \do\@department
 	\do\faculty \do\@faculty
+	\do\facultyto \do\@facultyto
 	\do\degree \do\@degree
 	\do\subject \do\@subject
 	\do\date \do\@date
